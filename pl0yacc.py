@@ -217,13 +217,11 @@ def pl0_lexer(data):
     lexer.input(data)
     print_tokens(lexer)
 
-def pl0_parse():
-    with open('./sample/parser.pl0') as file:
+def pl0_parse(filename):
+    with open(filename) as file:
         data = file.read()
     pl0_lexer(data)
     y = yacc.yacc()
     y.parse(data)
     print(procs)
     return ast
-
-pl0_parse()

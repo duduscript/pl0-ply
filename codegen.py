@@ -99,11 +99,12 @@ def codegen(ast):
         code[tmpBeginTwo] = ('JPC',0,len(code))
     elif op == 'read':
         lexeme = read_ident(ast)
+        code.append(('SIO_IN',0,2))
         code.append(('STO',abs(names[lexeme][1]-currlevel),names[lexeme][2]))
     elif op == 'write':
         expr = write_expr(ast)
         codegen(expr)
-        code.append(('STO_OUT',0,1))
+        code.append(('SIO_OUT',0,1))
     elif op == 'odd':
         pass
     elif op == '=':
@@ -117,7 +118,7 @@ def codegen(ast):
     elif op == '<':
         codegen(less_left(ast))
         codegen(less_right(ast))
-        code.append(('OPR',0,'OPR_LESS'))
+        code.append(('OPR',0,'OPR_LSS'))
     elif op == '<=':
         codegen(leq_left(ast))
         codegen(leq_right(ast))
@@ -140,6 +141,7 @@ def codegen(ast):
         code.append(('OPR',0,'OPR_DIV'))
     elif op == '-':
         if len(ast) == 2:
+            codegen(ast[1])
             code.append(('OPR',0,'OPR_NEG'))
         else:
             codegen(minus_left(ast))
@@ -163,12 +165,3 @@ def codegen(ast):
     else:
         pass
     return code
-
-ast = pl0_parse()
-for key in procs:
-    print(key)
-    print(procs[key])
-codegen(ast)
-print(len(code))
-for ins in code:
-    print(ins)
