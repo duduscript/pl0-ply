@@ -1,0 +1,6 @@
+var a,b;
+begin
+	a := 10;
+	b := 12;
+	write a+b;
+end.
