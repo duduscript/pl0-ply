@@ -135,7 +135,7 @@ def pl0(codes):
 if __name__ == '__main__':
     print(len(sys.argv))
     if len(sys.argv) != 2:
-        print('Usage: python vm.py filepath!')
+        print('Usage: python pl0.py filepath!')
         exit(1)
     ast = pl0_parse(sys.argv[1])
     codegen(ast)
