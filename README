@@ -1,2 +1,5 @@
 This is a compiler for pl0 programming language 
 using lex and yacc
+
+Usage:
+    python pl0.py filepath(pl0)
