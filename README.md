@@ -33,3 +33,5 @@ factor = ident | number | "(" expression ")".
 ## Usage
 - python pl0.py filepath(pl0)
 
+## LICENSE
+MIT © [duduscript](https://github.com/duduscript)
